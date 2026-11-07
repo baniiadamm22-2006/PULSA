@@ -1,0 +1,31 @@
+public static function form(\Filament\Forms\Form $form): \Filament\Forms\Form
+{
+    return $form->schema([]);
+}
+
+public static function infolist(\Filament\Infolists\Infolist $infolist): \Filament\Infolists\Infolist
+{
+    return $infolist->schema([
+            \Filament\Infolists\Components\TextEntry::make('gateway')->label('Gateway'),
+            \Filament\Infolists\Components\TextEntry::make('payment.order.invoice_number')->label('Invoice'),
+            \Filament\Infolists\Components\TextEntry::make('event_fingerprint')->label('Fingerprint Event')->copyable(),
+            \Filament\Infolists\Components\IconEntry::make('signature_valid')->label('Signature Valid')->boolean(),
+            \Filament\Infolists\Components\TextEntry::make('processed_at')->label('Diproses Pada')->dateTime('d M Y H:i'),
+            \Filament\Infolists\Components\TextEntry::make('created_at')->label('Diterima Pada')->dateTime('d M Y H:i')
+    ])->columns(2);
+}
+
+public static function table(\Filament\Tables\Table $table): \Filament\Tables\Table
+{
+    return $table->columns([
+            \Filament\Tables\Columns\TextColumn::make('gateway')->label('Gateway'),
+            \Filament\Tables\Columns\TextColumn::make('payment.order.invoice_number')->label('Invoice')->searchable()->sortable(),
+            \Filament\Tables\Columns\TextColumn::make('event_fingerprint')->label('Fingerprint Event')->limit(55),
+            \Filament\Tables\Columns\IconColumn::make('signature_valid')->label('Tanda Tangan Valid')->boolean(),
+            \Filament\Tables\Columns\TextColumn::make('processed_at')->label('Diproses')->dateTime('d M Y H:i')->sortable(),
+            \Filament\Tables\Columns\TextColumn::make('created_at')->label('Diterima')->dateTime('d M Y H:i')->sortable()
+    ])
+        ->actions([\Filament\Tables\Actions\ViewAction::make()])
+        ->defaultSort('id', 'desc')
+        ->emptyStateHeading('Belum ada data');
+}

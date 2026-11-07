@@ -1,0 +1,40 @@
+public static function form(\Filament\Forms\Form $form): \Filament\Forms\Form
+{
+    return $form->schema([]);
+}
+
+public static function infolist(\Filament\Infolists\Infolist $infolist): \Filament\Infolists\Infolist
+{
+    return $infolist->schema([
+            \Filament\Infolists\Components\TextEntry::make('order.invoice_number')->label('Invoice'),
+            \Filament\Infolists\Components\TextEntry::make('gateway')->label('Gateway'),
+            \Filament\Infolists\Components\TextEntry::make('payment_method')->label('Metode Pembayaran'),
+            \Filament\Infolists\Components\TextEntry::make('gateway_reference')->label('Referensi Gateway')->copyable(),
+            \Filament\Infolists\Components\TextEntry::make('gateway_transaction_id')->label('ID Transaksi Gateway')->copyable(),
+            \Filament\Infolists\Components\TextEntry::make('amount')->label('Jumlah Bayar')->money('IDR'),
+            \Filament\Infolists\Components\TextEntry::make('status')->label('Status')->badge(),
+            \Filament\Infolists\Components\TextEntry::make('paid_at')->label('Dibayar Pada')->dateTime('d M Y H:i'),
+            \Filament\Infolists\Components\TextEntry::make('expires_at')->label('Kedaluwarsa')->dateTime('d M Y H:i'),
+            \Filament\Infolists\Components\TextEntry::make('created_at')->label('Dibuat')->dateTime('d M Y H:i')
+    ])->columns(2);
+}
+
+public static function table(\Filament\Tables\Table $table): \Filament\Tables\Table
+{
+    return $table->columns([
+            \Filament\Tables\Columns\TextColumn::make('order.invoice_number')->label('Invoice')->searchable()->sortable(),
+            \Filament\Tables\Columns\TextColumn::make('gateway')->label('Gateway'),
+            \Filament\Tables\Columns\TextColumn::make('payment_method')->label('Metode'),
+            \Filament\Tables\Columns\TextColumn::make('amount')->label('Jumlah')->money('IDR')->sortable(),
+            \Filament\Tables\Columns\TextColumn::make('status')->label('Status')->badge()->sortable(),
+            \Filament\Tables\Columns\TextColumn::make('created_at')->label('Dibuat')->dateTime('d M Y H:i')->sortable()
+    ])
+        ->filters([\Filament\Tables\Filters\SelectFilter::make('status')->label('Status')->options([
+            'pending' => 'Pending', 'awaiting_payment' => 'Menunggu Pembayaran',
+            'processing' => 'Diproses', 'success' => 'Berhasil', 'paid' => 'Dibayar',
+            'failed' => 'Gagal', 'expired' => 'Kedaluwarsa', 'refunded' => 'Refund',
+        ]),])
+        ->actions([\Filament\Tables\Actions\ViewAction::make()])
+        ->defaultSort('id', 'desc')
+        ->emptyStateHeading('Belum ada data');
+}

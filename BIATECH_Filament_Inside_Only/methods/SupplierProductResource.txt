@@ -1,0 +1,49 @@
+public static function form(\Filament\Forms\Form $form): \Filament\Forms\Form
+{
+    return $form->schema([
+        \Filament\Forms\Components\Section::make('Mapping Produk Supplier')
+            ->description('Hubungkan produk katalog dengan SKU di supplier. Mapping ini tidak otomatis mengirim transaksi.')
+            ->schema([
+                \Filament\Forms\Components\Select::make('supplier_id')
+                    ->label('Supplier')->relationship('supplier', 'name')
+                    ->searchable()->preload()->required()->live(),
+                \Filament\Forms\Components\Select::make('product_id')
+                    ->label('Produk BIATECH')->relationship('product', 'name')
+                    ->searchable()->preload()->required()
+                    ->rules(fn (\Filament\Forms\Get $get, ?\Illuminate\Database\Eloquent\Model $record): array => [
+                        \Illuminate\Validation\Rule::unique('supplier_products', 'product_id')
+                            ->where('supplier_id', $get('supplier_id'))
+                            ->ignore($record?->getKey()),
+                    ]),
+                \Filament\Forms\Components\TextInput::make('supplier_product_code')
+                    ->label('SKU Supplier')->required()->maxLength(120)
+                    ->rules(fn (\Filament\Forms\Get $get, ?\Illuminate\Database\Eloquent\Model $record): array => [
+                        \Illuminate\Validation\Rule::unique('supplier_products', 'supplier_product_code')
+                            ->where('supplier_id', $get('supplier_id'))
+                            ->ignore($record?->getKey()),
+                    ]),
+                \Filament\Forms\Components\TextInput::make('supplier_price')
+                    ->label('Harga Modal Supplier (Rp)')->numeric()->minValue(0)
+                    ->prefix('Rp')->required(),
+                \Filament\Forms\Components\Toggle::make('is_active')
+                    ->label('Aktif')->default(false),
+            ])->columns(2),
+    ]);
+}
+
+public static function table(\Filament\Tables\Table $table): \Filament\Tables\Table
+{
+    return $table->columns([
+        \Filament\Tables\Columns\TextColumn::make('supplier.name')->label('Supplier')->searchable()->sortable(),
+        \Filament\Tables\Columns\TextColumn::make('product.name')->label('Produk')->searchable()->wrap(),
+        \Filament\Tables\Columns\TextColumn::make('supplier_product_code')->label('SKU Supplier')->searchable()->copyable(),
+        \Filament\Tables\Columns\TextColumn::make('supplier_price')->label('Harga Modal')->money('IDR')->sortable(),
+        \Filament\Tables\Columns\IconColumn::make('is_active')->label('Aktif')->boolean(),
+    ])->filters([
+        \Filament\Tables\Filters\SelectFilter::make('supplier')
+            ->label('Supplier')->relationship('supplier', 'name')->searchable()->preload(),
+        \Filament\Tables\Filters\TernaryFilter::make('is_active')->label('Status aktif'),
+    ])->actions([
+        \Filament\Tables\Actions\EditAction::make(),
+    ])->defaultSort('id', 'desc')->emptyStateHeading('Belum ada mapping produk supplier');
+}

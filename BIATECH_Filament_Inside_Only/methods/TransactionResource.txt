@@ -1,0 +1,38 @@
+public static function form(\Filament\Forms\Form $form): \Filament\Forms\Form
+{
+    return $form->schema([]);
+}
+
+public static function infolist(\Filament\Infolists\Infolist $infolist): \Filament\Infolists\Infolist
+{
+    return $infolist->schema([
+            \Filament\Infolists\Components\TextEntry::make('order.invoice_number')->label('Invoice'),
+            \Filament\Infolists\Components\TextEntry::make('item.product_name_snapshot')->label('Produk'),
+            \Filament\Infolists\Components\TextEntry::make('supplier.name')->label('Supplier'),
+            \Filament\Infolists\Components\TextEntry::make('local_reference')->label('Referensi Internal')->copyable(),
+            \Filament\Infolists\Components\TextEntry::make('supplier_reference')->label('Referensi Supplier')->copyable(),
+            \Filament\Infolists\Components\TextEntry::make('status')->label('Status')->badge(),
+            \Filament\Infolists\Components\TextEntry::make('last_checked_at')->label('Terakhir Dicek')->dateTime('d M Y H:i'),
+            \Filament\Infolists\Components\TextEntry::make('created_at')->label('Dibuat')->dateTime('d M Y H:i')
+    ])->columns(2);
+}
+
+public static function table(\Filament\Tables\Table $table): \Filament\Tables\Table
+{
+    return $table->columns([
+            \Filament\Tables\Columns\TextColumn::make('order.invoice_number')->label('Invoice')->searchable()->sortable(),
+            \Filament\Tables\Columns\TextColumn::make('local_reference')->label('Referensi Internal')->searchable()->sortable(),
+            \Filament\Tables\Columns\TextColumn::make('supplier.name')->label('Supplier'),
+            \Filament\Tables\Columns\TextColumn::make('status')->label('Status')->badge()->sortable(),
+            \Filament\Tables\Columns\TextColumn::make('last_checked_at')->label('Terakhir Dicek')->dateTime('d M Y H:i')->sortable(),
+            \Filament\Tables\Columns\TextColumn::make('created_at')->label('Dibuat')->dateTime('d M Y H:i')->sortable()
+    ])
+        ->filters([\Filament\Tables\Filters\SelectFilter::make('status')->label('Status')->options([
+            'pending' => 'Pending', 'awaiting_payment' => 'Menunggu Pembayaran',
+            'processing' => 'Diproses', 'success' => 'Berhasil', 'paid' => 'Dibayar',
+            'failed' => 'Gagal', 'expired' => 'Kedaluwarsa', 'refunded' => 'Refund',
+        ]),])
+        ->actions([\Filament\Tables\Actions\ViewAction::make()])
+        ->defaultSort('id', 'desc')
+        ->emptyStateHeading('Belum ada data');
+}

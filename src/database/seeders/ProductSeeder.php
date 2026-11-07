@@ -1,0 +1,15 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Product;
+use Illuminate\Database\Seeder;
+
+class ProductSeeder extends Seeder
+{
+    public function run(): void
+    {
+        // Tidak membuat data finansial/transaksi palsu.
+        // Data ini dibuat melalui business service saat proses yang sah terjadi.
+    }
+}

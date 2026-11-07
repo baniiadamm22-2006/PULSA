@@ -1,0 +1,48 @@
+public static function form(\Filament\Forms\Form $form): \Filament\Forms\Form
+{
+    return $form->schema([
+        \Filament\Forms\Components\Section::make('Pengaturan Publik BIATECH')
+            ->description('Untuk teks atau angka non-rahasia. Jangan simpan API key, password, atau server key di menu ini.')
+            ->schema([
+                \Filament\Forms\Components\TextInput::make('key')
+                    ->label('Kunci pengaturan')
+                    ->required()
+                    ->maxLength(150)
+                    ->rule('regex:/^public\.[a-z0-9._-]+$/')
+                    ->unique(ignoreRecord: true)
+                    ->disabledOn('edit')
+                    ->helperText('Contoh: public.site_name, public.support_phone'),
+                \Filament\Forms\Components\Select::make('value_type')
+                    ->label('Tipe nilai')
+                    ->options(['string' => 'Teks', 'number' => 'Angka', 'boolean' => 'Boolean'])
+                    ->required()
+                    ->default('string'),
+                \Filament\Forms\Components\Textarea::make('value')
+                    ->label('Nilai')
+                    ->rows(4)
+                    ->columnSpanFull()
+                    ->helperText('Jika boolean, gunakan 1 untuk ya atau 0 untuk tidak.'),
+                \Filament\Forms\Components\Toggle::make('is_public')
+                    ->label('Pengaturan publik')
+                    ->default(true)
+                    ->disabled()
+                    ->dehydrated(true),
+            ])->columns(2),
+    ]);
+}
+
+public static function table(\Filament\Tables\Table $table): \Filament\Tables\Table
+{
+    return $table->columns([
+        \Filament\Tables\Columns\TextColumn::make('key')->label('Kunci')->searchable()->sortable()->copyable(),
+        \Filament\Tables\Columns\TextColumn::make('value')->label('Nilai')->limit(60)->wrap(),
+        \Filament\Tables\Columns\TextColumn::make('value_type')->label('Tipe')->badge(),
+        \Filament\Tables\Columns\IconColumn::make('is_public')->label('Publik')->boolean(),
+        \Filament\Tables\Columns\TextColumn::make('updated_at')->label('Diperbarui')->dateTime('d M Y H:i')->sortable(),
+    ])->filters([
+        \Filament\Tables\Filters\SelectFilter::make('value_type')
+            ->label('Tipe')->options(['string' => 'Teks', 'number' => 'Angka', 'boolean' => 'Boolean']),
+    ])->actions([
+        \Filament\Tables\Actions\EditAction::make(),
+    ])->defaultSort('updated_at', 'desc')->emptyStateHeading('Belum ada pengaturan publik');
+}

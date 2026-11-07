@@ -1,0 +1,30 @@
+
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
+
+/*
+|--------------------------------------------------------------------------
+| Livewire Routes — BIATECH Boilerplate
+|--------------------------------------------------------------------------
+| Keep the original asset prefix handling for sub-folder deployments.
+*/
+
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post(config('app.asset_prefix') . '/livewire/update', $handle);
+});
+
+Livewire::setScriptRoute(function ($handle) {
+    return Route::get(config('app.asset_prefix') . '/livewire/livewire.js', $handle);
+});
+
+/*
+|--------------------------------------------------------------------------
+| BIATECH Customer Website Routes
+|--------------------------------------------------------------------------
+| Homepage, product catalog, checkout demo, and guest tracking.
+| Filament registers its own admin routes separately.
+*/
+
+require_once __DIR__ . '/biatech-storefront.php';
