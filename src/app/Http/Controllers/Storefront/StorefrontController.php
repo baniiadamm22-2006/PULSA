@@ -1,15 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use App\Services\Storefront\CatalogService;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
 class StorefrontController extends Controller
 {
-    public function __construct(private readonly CatalogService $catalog) {}
+    public function __construct(private readonly CatalogService $catalog)
+    {
+    }
 
     public function home(): View
     {
@@ -31,7 +34,8 @@ class StorefrontController extends Controller
 
         $related = array_values(array_filter(
             $this->catalog->products(),
-            fn (array $item): bool => $item['category'] === $product['category'] && $item['slug'] !== $slug
+            fn (array $item): bool => $item['category'] === $product['category']
+                && $item['slug'] !== $slug,
         ));
 
         return view('storefront.product', compact('product', 'related'));
@@ -45,20 +49,14 @@ class StorefrontController extends Controller
         return view('storefront.checkout', compact('product'));
     }
 
-    public function payment(Request $request, string $invoice): View
+    public function payment(string $invoice): never
     {
-        $order = $request->session()->get('biatech_demo_orders.'.$invoice);
-        abort_unless(is_array($order), 404);
-
-        return view('storefront.payment', compact('order', 'invoice'));
+        abort(404);
     }
 
-    public function order(Request $request, string $invoice): View
+    public function order(string $invoice): never
     {
-        $order = $request->session()->get('biatech_demo_orders.'.$invoice);
-        abort_unless(is_array($order), 404);
-
-        return view('storefront.order', compact('order', 'invoice'));
+        abort(404);
     }
 
     public function track(): View

@@ -138,6 +138,7 @@ class ProductResource extends Resource
             ->defaultSort('id', 'desc')
             ->actions([
                 Tables\Actions\EditAction::make(),
+                \Filament\Tables\Actions\DeleteAction::make(),
             ]);
     }
 

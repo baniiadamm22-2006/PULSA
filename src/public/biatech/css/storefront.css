@@ -90,18 +90,6 @@ a,button,input,select,textarea,summary {
 .skip-link:focus {
   top: 12px;
 }
-.demo-ribbon {
-  background: #fff2da;
-  color: #603607;
-  text-align: center;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 7px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
 .utility-bar {
   background: #071827;
   color: #e6f0f8;
@@ -965,12 +953,6 @@ a,button,input,select,textarea,summary {
   line-height: 1.9;
   margin: 20px 0 0;
 }
-.footer-demo {
-  font-size: 10px;
-  color: #ffd8a3;
-  display: block;
-  margin-top: 14px;
-}
 .footer-links,.footer-contact {
   display: flex;
   flex-direction: column;
@@ -1540,42 +1522,6 @@ textarea.field-control {
 .payment-status--processing {
   background: #e4f1ff;
   color: #296eb0;
-}
-.simulator-box {
-  background: linear-gradient(135deg,#0a2540,#163d5e);
-  padding: 25px;
-  border-radius: 17px;
-  color: #fff;
-  margin-bottom: 20px;
-}
-.simulator-box h3 {
-  color: #fff;
-}
-.simulator-box p {
-  color: #b5ccdd;
-}
-.simulator-box .field-hint {
-  color: #abc4d4;
-}
-.scenario-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 10px;
-}
-.scenario-grid button {
-  background: #fff;
-  color: #13304c;
-  border-radius: 9px;
-  border: 0;
-  padding: 11px 8px;
-  font-size: 11px;
-  font-weight: 900;
-}
-.scenario-grid button:hover {
-  background: #ffd6b9;
-}
-.scenario-grid button[wire\:loading\.attr] {
-  opacity: .6;
 }
 .status-view {
   display: flex;

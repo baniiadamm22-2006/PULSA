@@ -1,0 +1,107 @@
+{
+  "replace": {
+    "app/Services/Storefront/CatalogService.php": {
+      "sha256_allowed": [
+        "e0a4e8710028739f542a28442ac768e428e0c2db19464c788f6ae302e1839156",
+        "e0a4e8710028739f542a28442ac768e428e0c2db19464c788f6ae302e1839156"
+      ],
+      "sha256_new": "d4f73e9e42d0652617407bcfd8c2bf07d3a0b89d2688154903f547e00821b755"
+    },
+    "config/biatech-storefront.php": {
+      "sha256_allowed": [
+        "d3737984ea3bfef673b70138809c8868761452f1ee3209e0698899c0ef73c279",
+        "8a59f5422e8a1e824fdc95d0ca563b4d8bed88cf3f50e045da12f70dce425563"
+      ],
+      "sha256_new": "a8f3a5f0793f9bb785222129c41d7a24f159b602343c5f7be806bbae7567dcec"
+    },
+    "app/Http/Controllers/Storefront/StorefrontController.php": {
+      "sha256_allowed": [
+        "ef7da6fd728437aa0c652137dbe99ceeaafe0ca9bbcc7e73f7d60fb36cec00f5"
+      ],
+      "sha256_new": "261bcf87739ee1a7360726a3df157b8ab588cd93871d739c55f56e2b57b573d7"
+    },
+    "resources/views/storefront/checkout.blade.php": {
+      "sha256_allowed": [
+        "e482d77cd0dc5ebccc955524fce9c2a84ad4a8e5643e7f50f3725fa737a2127c"
+      ],
+      "sha256_new": "1051bdc2e44347517ce013b54a6afdb2a4f425280c09bd481e2b3a10061428e6"
+    },
+    "resources/views/storefront/track.blade.php": {
+      "sha256_allowed": [
+        "c7a9eea996afc5383c87fd758f902fa05d5f0b7dfe3913ec08b0e8c4bc314184"
+      ],
+      "sha256_new": "fab2cc4f412e1cdf5c3b67369e3d00d368aa08c16f45ea476f8d3a7cd2a782b3"
+    },
+    "resources/views/storefront/help.blade.php": {
+      "sha256_allowed": [
+        "ed525a38b49dd9c7f2a20c224530c7c10ed861d05fa698538072300b042719ad"
+      ],
+      "sha256_new": "c872a01e918bf7784a4e4c8f3a3b9939fc53b6c92cf4302ac8df9edaa559ddaa"
+    },
+    "resources/views/components/biatech/product-card.blade.php": {
+      "sha256_allowed": [
+        "0609225078c0f191ed2eaaa2b3e7cfdda82175392d208bfe6017409ca5c8a8e0"
+      ],
+      "sha256_new": "eb653053ae00ae7f1cf6e481026454e25a12b14c9123791c52d986b56143ba9f"
+    },
+    "resources/views/storefront/product.blade.php": {
+      "sha256_allowed": [
+        "de32b9e35c51f7c64bf1d0f9747ec7a6c930ef21540e65caef1f6fd6f365a755"
+      ],
+      "sha256_new": "7c39c144e209025f7569687b4708003b6cbc83245997b9f32ed79e9f7ab7bd00"
+    },
+    "resources/views/livewire/biatech/catalog-browser.blade.php": {
+      "sha256_allowed": [
+        "ffc579a17b9f07cb1f28eb22401086e1b25d00dab23d05fb146a06ef81899716"
+      ],
+      "sha256_new": "8a28c760264088567481e50817b17087f06d5d56104cc049ef0489d726c363c4"
+    },
+    "resources/views/storefront/home.blade.php": {
+      "sha256_allowed": [
+        "0760e4f2cc48520ad19afb3144ba00c724d8af8e09bc045339118aec2505e433"
+      ],
+      "sha256_new": "7a7fda7d6c4f50956f9a82a4b21f5ded597eaee8995c6bae20f085408bc648ea"
+    },
+    "resources/views/layouts/biatech.blade.php": {
+      "sha256_allowed": [
+        "e9b4feb701e96e3a2fa5e407a1c514b61d49d957a318d32ab2e48628ce164e03"
+      ],
+      "sha256_new": "886b3791c8dd835f391ed4afd2966fcab2e1d593cf5acff97a0553c22d9a1dbc"
+    },
+    "public/biatech/css/storefront.css": {
+      "sha256_allowed": [
+        "488d89b787851d24d1cd00a281515a9655b0a2c1ab0b0b86252337c802c141ae"
+      ],
+      "sha256_new": "eda791c2154753c174aa947904bd8bc9b42d13efdba2bcf773eceffa7df54719"
+    }
+  },
+  "delete": {
+    "app/Livewire/Biatech/CheckoutForm.php": [
+      "abf52b250de55d17e56422abf1427db51d5bcd295560645cb0820439e4adf9a8"
+    ],
+    "app/Livewire/Biatech/PaymentSimulator.php": [
+      "a7f082b9af30afc6461ad1244046086b4ee1f84f92a6e768e0440da3ba8dc33a"
+    ],
+    "app/Livewire/Biatech/TrackOrder.php": [
+      "6c8ddecc387b57d45302f07cb66eaa0549d231b7b88301419842e2f187bab834"
+    ],
+    "resources/views/livewire/biatech/checkout-form.blade.php": [
+      "8a4d897171aff4d401caa14b1eef88aa5f047818f98cc80f4bf49d40313be371"
+    ],
+    "resources/views/livewire/biatech/payment-simulator.blade.php": [
+      "cabaa9f41e5b5e453fb3db73041bfd2f030e051dc7ae05a042a69245908ea5e2"
+    ],
+    "resources/views/livewire/biatech/track-order.blade.php": [
+      "80e99aba90d5082934ee455b3f993a958bbe705aad4ed897808e6227231f6df8"
+    ],
+    "resources/views/storefront/payment.blade.php": [
+      "782c02e0a1b6b9759522169610c9473704bcb3cbf86a5bb466c63ee21478bbec"
+    ],
+    "resources/views/storefront/order.blade.php": [
+      "b6ccc53e957053c45ecfb91fa73792c7c1c3a10be9ccea4297039751dc42e8e9"
+    ],
+    "tests/Feature/Biatech/StorefrontPageTest.php": [
+      "b64598ee85413a9ac67839a03b0348aeb7a19aa2bd29f157279d67e7ffbf8741"
+    ]
+  }
+}

@@ -13,7 +13,7 @@
             @if ($product['validity_days'])<span><x-biatech.icon name="clock" :size="13" /> {{ $product['validity_days'] }} hari</span>@endif
         </div>
         <div class="product-card__bottom">
-            <div><small>Harga {{ config('biatech-storefront.catalog_source') === 'demo' ? 'demo' : 'jual' }}</small><strong>Rp{{ number_format($product['price'], 0, ',', '.') }}</strong></div>
+            <div><small>Harga katalog</small><strong>Rp{{ number_format($product['price'], 0, ',', '.') }}</strong></div>
             <a class="button button--orange product-card__action" href="{{ route('biatech.product', $product['slug']) }}">Pilih <x-biatech.icon name="arrow-right" :size="16" /></a>
         </div>
     </div>

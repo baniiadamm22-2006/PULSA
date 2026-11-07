@@ -199,7 +199,7 @@ fi
 # Step 5: Generate app key if not already present
 if [ ! -f /var/www/html/storage/oauth-private.key ]; then
   echo "🔐 Generating Laravel app key..."
-  php artisan key:generate --force
+  : # Preserve existing Laravel APP_KEY
 fi
 
 # Step 6: Create necessary folders and set permissions
@@ -213,8 +213,7 @@ echo "🗃️ Running migrations..."
 php artisan migrate --force
 
 # Step 8: Run custom project init command
-echo "🚀 Running project:init..."
-php artisan project:init || true
+echo "Project initialization skipped during container startup."
 
 # Step 9: Create storage symbolic link
 echo "🔗 Creating storage link..."

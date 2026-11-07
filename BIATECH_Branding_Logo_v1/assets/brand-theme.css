@@ -1,0 +1,113 @@
+/* BIATECH brand refresh — visual-only layer. Keep storefront.css and layout intact. */
+:root {
+    --navy: #0b102f;
+    --navy-2: #141942;
+    --navy-3: #20285f;
+    --ink: #151c41;
+    --muted: #65708b;
+    --orange: #3158cb;  /* legacy CSS variable: brand blue */
+    --orange-2: #8b5cf6;
+    --paper: #f7f9ff;
+    --line: #e3e8f6;
+    --shadow: 0 16px 48px rgb(27 42 96 / 9%);
+    --brand-cyan: #00d4ff;
+    --brand-blue: #3b82f6;
+    --brand-violet: #8b5cf6;
+    --brand-dark: #0b102f;
+    --brand-gradient: linear-gradient(115deg, #1666e8 0%, #3b82f6 44%, #8b5cf6 100%);
+}
+:focus-visible { outline-color: var(--brand-cyan); }
+.utility-bar { background: #080c24; }
+.utility-bar__inner a:hover { color: #71e7ff; }
+.site-header { background: #0b102f; box-shadow: 0 6px 22px rgb(9 11 37 / 14%); }
+.desktop-nav { background: #141942; border-top-color: #303966; }
+.desktop-nav a:hover,
+.desktop-nav a.is-active,
+.header-actions__item:hover { color: #78e9ff; }
+.desktop-nav a.is-active { border-bottom-color: var(--brand-cyan); }
+.desktop-nav .desktop-nav__highlight,
+.header-actions__cta,
+.header-search button,
+.button--orange { background: var(--brand-gradient); color: #fff; }
+.header-search button:hover,
+.button--orange:hover { background: linear-gradient(115deg,#1754ce 0%,#7151e5 100%); }
+.header-actions__cta:hover { box-shadow: 0 10px 22px rgb(59 130 246 / 32%); }
+.button--orange { box-shadow: 0 8px 19px rgb(59 130 246 / 21%); }
+.button--orange:hover { box-shadow: 0 13px 24px rgb(94 74 215 / 26%); }
+.brand { color: #fff; }
+.brand__mark { width: 46px; height: 46px; transform: none; display: grid; place-items: center; flex-shrink: 0; }
+.brand__mark img { display: block; width: 44px; height: 44px; object-fit: cover; border-radius: 12px; }
+.brand strong span { color: #78e9ff; }
+.brand small { color: #aab8e6; }
+.brand--footer .brand__mark { width: 46px; height: 46px; }
+.site-footer { background: linear-gradient(140deg,#080c24,#15123e 75%,#17134c); }
+.footer-links a:hover, .footer-contact__email { color: #86e9ff; }
+.footer-base { border-top-color: #303564; }
+.hero-section { background: radial-gradient(circle at 81% 35%, #e8e7ff 0%, #f1f8ff 31%, #fff 69%); }
+.hero-art__halo { background: rgb(0 212 255 / 12%); }
+.hero-copy .eyebrow { background: var(--brand-gradient); }
+.hero-copy h1 span {
+    background: linear-gradient(105deg,#138ce8 0%,#3b82f6 40%,#8b5cf6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.hero-highlights .ui-icon,
+.hero-art__tag svg,
+.feature-item .ui-icon { color: #3468e9; }
+.section-kicker, .text-link:hover { color: #3158cb; }
+.category-tile:hover { border-color: #a8bfff; box-shadow: 0 17px 36px rgb(56 82 192 / 11%); }
+.tone-orange .category-tile__disc,
+.tone-orange.product-card__visual .product-card__visual-bubble,
+.product-detail-art__disc { background: linear-gradient(135deg,#00d4ff,#3b82f6 55%,#8b5cf6); }
+.tone-blue .category-tile__disc,
+.tone-blue.product-card__visual .product-card__visual-bubble,
+.tone-blue .product-detail-art__disc { background: linear-gradient(135deg,#21c8ff,#236ce9); }
+.tone-violet .category-tile__disc,
+.tone-violet.product-card__visual .product-card__visual-bubble,
+.tone-violet .product-detail-art__disc { background: linear-gradient(135deg,#a77aff,#6830e0); }
+.tone-mint .category-tile__disc,
+.tone-mint.product-card__visual .product-card__visual-bubble,
+.tone-mint .product-detail-art__disc { background: linear-gradient(135deg,#00d4ff,#237de7); }
+.tone-yellow .category-tile__disc,
+.tone-yellow.product-card__visual .product-card__visual-bubble,
+.tone-yellow .product-detail-art__disc { background: linear-gradient(135deg,#5797ff,#8654ee); }
+.category-tile__link { color: #3158cb; }
+.orange-promo { background: linear-gradient(110deg,#0a50d6 0%,#3b82f6 48%,#8b5cf6 100%); box-shadow: 0 14px 32px rgb(58 68 181 / 19%); }
+.orange-promo__eyebrow, .orange-promo h2 span { color: #c6f8ff; }
+.orange-promo p { color: #f0f6ff; }
+.orange-promo__graphic { filter: drop-shadow(4px 8px 8px rgb(10 28 118 / 28%)); }
+.product-card__badge, .product-card__action { transition: background .2s, transform .2s; }
+.product-card__visual.tone-orange { background: #edf4ff; }
+.product-card--large .product-card__visual.tone-orange { background: #edf4ff; }
+.product-card__price, .detail-price strong { color: #3158cb; }
+.page-hero { background: linear-gradient(118deg,#0b102f 0%,#17205b 65%,#29236f 100%); }
+.page-hero::after { border-color: rgb(0 212 255 / 11%); }
+.page-hero h1 em { color: #6de5ff; }
+.field-control:focus { border-color: #3b82f6; box-shadow: 0 0 0 4px rgb(59 130 246 / 14%); }
+.product-detail-art:not(.tone-blue):not(.tone-violet):not(.tone-mint):not(.tone-yellow) { background: radial-gradient(circle,#e9edff,#f7f9fd 75%); }
+.checkout-steps .is-current .step-bubble { background: #e9efff; color: #3158cb; }
+.status-symbol { background: #eaf3ff; }
+.timeline li.is-current::before { background: #3b82f6; box-shadow: 0 0 0 1px #3b82f6; }
+.support-box { background: #141942; }
+.support-box .ui-icon { color: #61e4ff; }
+.notice { background: #eef5ff; color: #233965; border-color: #c8dbff; }
+.notice .ui-icon { color: #3158cb; }
+.faq-item summary::after { color: #3158cb; }
+/* Preserve readable state semantics for errors/success/warnings. */
+@media (prefers-reduced-motion: reduce) {
+    .brand__mark, .brand__mark img { transition: none; }
+}
+/* Remaining accent surfaces in the existing storefront components. */
+.step-icon { background: #e8f3ff; color: #3158cb; }
+.cta-section { background: linear-gradient(110deg,#0b102f 0%,#1b2063 75%,#2a1d68 100%); }
+.cta-section::after { border-color: rgb(0 212 255 / 12%); }
+.product-card__visual:not(.tone-blue):not(.tone-violet):not(.tone-mint):not(.tone-yellow) { background: #edf5ff; }
+.product-detail-art__chip svg { color: #3158cb; }
+.mobile-nav { background: #141942; border-top-color: #303966; }
+.mobile-nav nav a { background: #20265b; color: #e3eafa; }
+.mobile-nav nav a:hover { background: #2c397c; color: #8deaff; }
+@keyframes pulse-ring {
+    0%, 100% { box-shadow: 0 0 0 1px #3b82f6; }
+    50% { box-shadow: 0 0 0 7px rgb(0 212 255 / 13%); }
+}

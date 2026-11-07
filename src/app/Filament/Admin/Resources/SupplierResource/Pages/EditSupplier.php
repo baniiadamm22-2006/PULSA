@@ -3,6 +3,7 @@
 namespace App\Filament\Admin\Resources\SupplierResource\Pages;
 
 use App\Filament\Admin\Resources\SupplierResource;
+use App\Models\Supplier;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
@@ -13,7 +14,15 @@ class EditSupplier extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->before(function (Actions\DeleteAction $action, Supplier $record): void {
+                    if (! SupplierResource::hasReferences($record)) {
+                        return;
+                    }
+
+                    SupplierResource::notifyDeletionBlocked($record);
+                    $action->cancel();
+                }),
         ];
     }
 }

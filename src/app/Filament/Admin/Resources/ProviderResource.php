@@ -82,6 +82,7 @@ class ProviderResource extends Resource
             ->defaultSort('name')
             ->actions([
                 Tables\Actions\EditAction::make(),
+                \Filament\Tables\Actions\DeleteAction::make(),
             ]);
     }
 

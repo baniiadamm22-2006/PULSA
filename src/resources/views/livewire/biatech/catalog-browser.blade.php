@@ -24,7 +24,6 @@
             </select>
         </div>
         <button type="button" class="button button--outline button--full" wire:click="clearFilters">Bersihkan filter</button>
-        <div class="notice" style="margin-top:20px"><x-biatech.icon name="info" :size="18" /><span>Ketersediaan dan harga simulasi hanya untuk keperluan preview UI.</span></div>
     </aside>
     <div>
         <div class="catalog-toolbar">

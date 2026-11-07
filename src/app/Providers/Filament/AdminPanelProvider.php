@@ -36,8 +36,12 @@ class AdminPanelProvider extends PanelProvider
             ->profile(\App\Filament\Pages\Auth\EditProfile::class, isSimple: false)
             ->defaultThemeMode(ThemeMode::Light)
             ->font('Montserrat')
+            ->brandLogo(asset('biatech/images/biatech-admin-logo-light.png'))
+            ->darkModeBrandLogo(asset('biatech/images/biatech-admin-logo-dark.png'))
+            ->brandLogoHeight('2.5rem')
+            ->favicon(asset('biatech/images/biatech-favicon.png'))
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => '#3B82F6',
             ])
             ->maxContentWidth(MaxWidth::SevenExtraLarge)
             ->sidebarCollapsibleOnDesktop()

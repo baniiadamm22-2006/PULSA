@@ -1,7 +1,5 @@
 <?php
-
 declare(strict_types=1);
-
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\CategoryResource\Pages;
@@ -12,6 +10,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -96,6 +95,32 @@ class CategoryResource extends Resource
             ->defaultSort('sort_order')
             ->actions([
                 Tables\Actions\EditAction::make(),
+
+                Tables\Actions\DeleteAction::make()
+                    ->label('Hapus')
+                    ->before(function (
+                        Tables\Actions\DeleteAction $action,
+                        Category $record
+                    ): void {
+                        $productsCount = $record->products()->count();
+
+                        if ($productsCount === 0) {
+                            return;
+                        }
+
+                        Notification::make()
+                            ->title('Kategori tidak dapat dihapus')
+                            ->body(
+                                "Kategori ini masih digunakan oleh {$productsCount} produk. " .
+                                'Pindahkan produk ke kategori lain atau nonaktifkan kategori ini terlebih dahulu.'
+                            )
+                            ->warning()
+                            ->persistent()
+                            ->send();
+
+                        $action->cancel();
+                    })
+                    ->successNotificationTitle('Kategori berhasil dihapus'),
             ]);
     }
 

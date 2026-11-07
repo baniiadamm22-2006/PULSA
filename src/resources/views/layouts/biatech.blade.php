@@ -3,27 +3,26 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#091b2e">
+    <meta name="theme-color" content="#0B102F">
     <meta name="description" content="BIATECH — pulsa, paket data, roaming internasional, paket Umroh, dan token listrik dalam satu website.">
     <title>@yield('title', 'BIATECH — Produk Digital Praktis')</title>
     <link rel="stylesheet" href="{{ asset('biatech/css/storefront.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('biatech/images/biatech-favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('biatech/css/brand-theme.css') }}">
     @livewireStyles
 </head>
 <body>
     <a class="skip-link" href="#main-content">Langsung ke konten</a>
-    @if (config('biatech-storefront.catalog_source', 'demo') === 'demo')
-        <div class="demo-ribbon"><x-biatech.icon name="info" :size="15" /> MODE DEMO — Harga dan transaksi pada frontend hanya simulasi, tidak ada pembayaran nyata.</div>
-    @endif
     <div class="utility-bar">
         <div class="container utility-bar__inner">
             <span><x-biatech.icon name="sparkles" :size="14" /> Solusi praktis kebutuhan digitalmu</span>
-            <a href="{{ route('biatech.track') }}"><x-biatech.icon name="clipboard" :size="14" /> Lacak pesanan</a>
+            <a href="{{ route('biatech.help') }}"><x-biatech.icon name="headset" :size="14" /> Pusat bantuan</a>
         </div>
     </div>
     <header class="site-header">
         <div class="container site-header__inner">
             <a href="{{ route('biatech.home') }}" class="brand" aria-label="BIATECH beranda">
-                <span class="brand__mark"><x-biatech.icon name="zap" :size="26" /></span>
+                <span class="brand__mark"><img src="{{ asset('biatech/images/biatech-logo.png') }}" alt="" width="44" height="44"></span>
                 <span><strong>BIA<span>TECH</span></strong><small>Digital • Mudah • Cepat</small></span>
             </a>
             <form class="header-search" method="GET" action="{{ route('biatech.catalog') }}" role="search">
@@ -31,7 +30,7 @@
                 <button aria-label="Cari produk" type="submit"><x-biatech.icon name="search" :size="20" /></button>
             </form>
             <nav class="header-actions" aria-label="Akses cepat">
-                <a href="{{ route('biatech.track') }}" class="header-actions__item"><x-biatech.icon name="clipboard" :size="22" /><span>Lacak <small>Pesanan</small></span></a>
+                <a href="{{ route('biatech.catalog') }}" class="header-actions__item"><x-biatech.icon name="grid" :size="22" /><span>Lihat <small>Produk</small></span></a>
                 <a href="{{ route('biatech.help') }}" class="header-actions__item"><x-biatech.icon name="headset" :size="23" /><span>Pusat <small>Bantuan</small></span></a>
                 <a href="{{ route('biatech.catalog') }}" class="header-actions__cta"><x-biatech.icon name="grid" :size="20" /><span>Produk</span></a>
             </nav>
@@ -39,14 +38,14 @@
         <div class="desktop-nav">
             <div class="container desktop-nav__inner">
                 <a href="{{ route('biatech.home') }}" class="{{ request()->routeIs('biatech.home') ? 'is-active' : '' }}">Beranda</a>
-                <a href="{{ route('biatech.catalog') }}" class="{{ request()->routeIs('biatech.catalog') ? 'is-active' : '' }}">Semua Produk</a>
-                <a href="{{ route('biatech.catalog', ['category' => 'pulsa-reguler']) }}">Pulsa</a>
-                <a href="{{ route('biatech.catalog', ['category' => 'paket-data-internet']) }}">Paket Data</a>
-                <a href="{{ route('biatech.catalog', ['category' => 'roaming-internasional']) }}">Roaming Internasional</a>
-                <a href="{{ route('biatech.catalog', ['category' => 'roaming-umroh']) }}">Paket Umroh</a>
-                <a href="{{ route('biatech.catalog', ['category' => 'token-listrik-pln']) }}">Token PLN</a>
+                <a href="{{ route('biatech.catalog') }}" class="{{ request()->routeIs('biatech.catalog') && blank(request()->query('category')) ? 'is-active' : '' }}">Semua Produk</a>
+                <a href="{{ route('biatech.catalog', ['category' => 'pulsa-reguler']) }}" class="{{ request()->routeIs('biatech.catalog') && request()->query('category') === 'pulsa-reguler' ? 'is-active' : '' }}">Pulsa</a>
+                <a href="{{ route('biatech.catalog', ['category' => 'paket-data-internet']) }}" class="{{ request()->routeIs('biatech.catalog') && request()->query('category') === 'paket-data-internet' ? 'is-active' : '' }}">Paket Data</a>
+                <a href="{{ route('biatech.catalog', ['category' => 'roaming-internasional']) }}" class="{{ request()->routeIs('biatech.catalog') && request()->query('category') === 'roaming-internasional' ? 'is-active' : '' }}">Roaming Internasional</a>
+                <a href="{{ route('biatech.catalog', ['category' => 'roaming-umroh']) }}" class="{{ request()->routeIs('biatech.catalog') && request()->query('category') === 'roaming-umroh' ? 'is-active' : '' }}">Paket Umroh</a>
+                <a href="{{ route('biatech.catalog', ['category' => 'token-listrik-pln']) }}" class="{{ request()->routeIs('biatech.catalog') && request()->query('category') === 'token-listrik-pln' ? 'is-active' : '' }}">Token PLN</a>
                 <span class="desktop-nav__spacer"></span>
-                <a class="desktop-nav__highlight" href="{{ route('biatech.track') }}"><x-biatech.icon name="arrow-right" :size="16" /> Cek Status</a>
+                <a class="desktop-nav__highlight" href="{{ route('biatech.help') }}"><x-biatech.icon name="arrow-right" :size="16" /> Bantuan</a>
             </div>
         </div>
         <details class="mobile-nav">
@@ -59,7 +58,7 @@
                 <a href="{{ route('biatech.catalog', ['category' => 'roaming-internasional']) }}">Roaming Internasional</a>
                 <a href="{{ route('biatech.catalog', ['category' => 'roaming-umroh']) }}">Roaming Umroh</a>
                 <a href="{{ route('biatech.catalog', ['category' => 'token-listrik-pln']) }}">Token PLN</a>
-                <a href="{{ route('biatech.track') }}">Lacak Pesanan</a>
+                <a href="{{ route('biatech.help') }}">Pusat Bantuan</a>
             </nav>
         </details>
     </header>
@@ -69,9 +68,8 @@
     <footer class="site-footer">
         <div class="container footer-grid">
             <div class="footer-about">
-                <a href="{{ route('biatech.home') }}" class="brand brand--footer"><span class="brand__mark"><x-biatech.icon name="zap" :size="27" /></span><span><strong>BIA<span>TECH</span></strong><small>Digital • Mudah • Cepat</small></span></a>
-                <p>Satu tempat untuk memenuhi kebutuhan pulsa, internet, roaming, dan listrik prabayar. Transaksi mudah, status lebih transparan.</p>
-                @if (config('biatech-storefront.catalog_source', 'demo') === 'demo')<span class="footer-demo">Prototype frontend · tanpa pembayaran asli</span>@endif
+                <a href="{{ route('biatech.home') }}" class="brand brand--footer"><span class="brand__mark"><img src="{{ asset('biatech/images/biatech-logo.png') }}" alt="" width="44" height="44"></span><span><strong>BIA<span>TECH</span></strong><small>Digital • Mudah • Cepat</small></span></a>
+                <p>Jelajahi informasi pulsa, internet, roaming, dan listrik prabayar melalui katalog BIATECH.</p>
             </div>
             <div class="footer-links"><h3>Produk digital</h3>
                 <a href="{{ route('biatech.catalog', ['category' => 'pulsa-reguler']) }}">Pulsa reguler</a>
@@ -83,7 +81,7 @@
             <div class="footer-links"><h3>Layanan</h3>
                 <a href="{{ route('biatech.home') }}">Beranda</a>
                 <a href="{{ route('biatech.catalog') }}">Katalog produk</a>
-                <a href="{{ route('biatech.track') }}">Lacak pesanan</a>
+                <a href="{{ route('biatech.catalog') }}">Kategori produk</a>
                 <a href="{{ route('biatech.help') }}">Pertanyaan umum</a>
             </div>
             <div class="footer-contact"><h3>Butuh bantuan?</h3><p>Ada pertanyaan seputar layanan atau status pesanan? Lihat pusat bantuan kami.</p>
